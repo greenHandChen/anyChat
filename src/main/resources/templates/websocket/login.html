@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- 用于CSRF防御的token(请求体)-->
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <!-- 用于CSRF防御的TOKEN(请求头)-->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>login</title>
+    <!-- 两种方式引入均可，spring boot 集成 thymeleaf模版时，静态资源默认的路径就是/templates,/static下 -->
+    <script src="jquery/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <!--<script th:src="@{jquery/jquery-2.2.3.min.js}" type="text/javascript"></script>-->
+</head>
+<body>
+<div th:if="${param.error}">
+    用户名或密码错误！
+</div>
+<div>
+    <form th:action="@{/login}" method="post">
+        <input type="text" id="username" name="username"/><br/>
+        <input type="password" id="password" name="password"/><br/>
+        <input type="submit" id="login-btn" value="登录"/>
+    </form>
+</div>
+</body>
+</html>

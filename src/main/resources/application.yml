@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: spring-websocket
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chat_db?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: root
+    password: root
+server:
+  port: 8081
+
+
+cux:
+  mybatis:
+    dbType: mysql
+    namingRule: CamelCase
+    mapper-locations: classpath:config/mybatis/mapper/*.xml
+    configuration:
+      mapUnderscoreToCamelCase: true
