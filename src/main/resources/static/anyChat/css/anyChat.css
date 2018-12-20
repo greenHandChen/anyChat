@@ -1,20 +1,6 @@
-.cux-body{
+.cux-body {
     background: url(/static/img/background.jpg) no-repeat 50%;
     background-size: cover;
-}
-
-.left-panel {
-    border: 1px solid #2E3238;
-    background-color: #2E3238;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius:4px;
-}
-
-.right-panel {
-    border: 1px solid #D6D6D6;
-    background-color: #EEEEEE;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius:4px;
 }
 
 .cux-panel {
@@ -23,6 +9,26 @@
     margin-bottom: 20px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.cux-left-panel {
+    background-color: #2E3238;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.cux-left-panel > div {
+    width: 280px;
+}
+
+.cux-right-panel {
+    background-color: #EEEEEE;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.cux-right-panel > div {
+    width: 720px;
 }
 
 .cux-panel-heading {
@@ -51,10 +57,6 @@
     text-align: center;
     height: 40px;
     float: right;
-}
-
-.cux-left-panel-body {
-    padding: 0 15px;
 }
 
 .cux-right-panel-body {
@@ -98,10 +100,11 @@
     margin-bottom: 10px;
     position: relative;
 }
+
 /* 消息 end*/
 
 /* 滚动条 start*/
-.cux-scrollbar {
+.cux-right-scrollbar {
     height: 480px;
     overflow-y: scroll;
 }
@@ -125,6 +128,7 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
     background-color: #939597;
 }
+
 /* 滚动条 end*/
 
 /* 导航栏 start*/
@@ -135,28 +139,27 @@
 
 .cux-tab {
     display: table-cell;
-    width: 82px;
+    width: 93px;
+    height: 35px;
     border-bottom: 1px solid #24272C;
 }
 
-/*.cux-tab > div {*/
-    /*height: 30px;*/
-    /*display: table-cell;*/
-    /*border-bottom: 1px solid #24272C;*/
-/*}*/
+.cux-tab > div {
+    height: 25px;
+    width: auto;
+    border-right: 1px solid #24272C;
+}
 
 .cux-tab-icon {
     color: white;
     font-size: 22px;
-    text-decoration: none;
     cursor: pointer;
-
 }
-/*.cux-nav > li > a:hover,*/
-/*.cux-nav > li > a:focus {*/
-    /*text-decoration: none;*/
-    /*background-color: #eee;*/
-/*}*/
+
+.cux-tab-icon-active {
+    color: #3CAF36;
+}
+
 /* 导航栏 end*/
 
 /* 搜索框 start*/
@@ -166,7 +169,9 @@
     display: table;
     border-collapse: separate;
 }
+
 .cux-search-input {
+    margin: -0.03em -1px -0.03em;
     outline: 0;
     color: #FFFFFF;
     border: 1px solid transparent;
@@ -193,6 +198,7 @@
     width: 100%;
     margin-bottom: 0;
 }
+
 .cux-search-bar .cux-search-input:focus {
     z-index: 3;
 }
@@ -210,23 +216,24 @@
     text-align: center;
     background-color: #26292E;
 }
+
 /* 搜索框 end */
 
 /* 头像位置 start*/
 .cux-left-header {
-    padding: 18px;
-    position: relative;
+    padding: 18px 0 18px 18px;
     display: table-cell;
     font-weight: 400;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: normal;
     color: #fff;
     font-size: 18px;
-    vertical-align: top;
-    line-height: 31px;
-    text-decoration: none;
+    /*position: relative;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*word-wrap: normal;*/
+    /*vertical-align: top;*/
+    /*line-height: 31px;*/
+    /*text-decoration: none;*/
 }
 
 .cux-left-head {
@@ -247,9 +254,162 @@
 
 .cux-info-icon {
     position: absolute;
-    right: 0;
-    top: 5px;
+    right: -25px;
+    top: 12px;
     color: #777777;
     cursor: pointer;
 }
+
 /* 头像位置 end*/
+
+/* 消息 start*/
+/* 消息 end*/
+
+/* 推送 start*/
+/* 推送 end*/
+
+/* 好友 start*/
+.cux-friend-title {
+    padding: 3px 18px;
+    height: 25px;
+    font-weight: 400;
+    color: #787b87;
+    background: #292d32;
+    font-size: 14px;
+}
+
+.cux-friend {
+    background: #2E3238;
+    color: white;
+    overflow: hidden;
+    padding: 10px 18px 9px;
+    border-bottom: 1px solid #292c33;
+    cursor: pointer;
+}
+
+.cux-friend-head {
+    text-align: center;
+    height: 30px;
+}
+
+.cux-friend-name {
+    padding-left: 10px;
+    display: table-cell;
+}
+
+.cux-friend-lg {
+    height: 64px;
+}
+
+.cux-friend-lg .cux-avatar > img {
+    text-align: center;
+    height: 40px;
+}
+
+.cux-friend-sm {
+    height: 50px;
+}
+
+.cux-friend-sm .cux-avatar > img {
+    text-align: center;
+    height: 30px;
+}
+
+.cux-tab-page {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 421px;
+}
+
+.cux-tab-page::-webkit-scrollbar {
+    width: 4px;
+    height: 16px;
+    background-color: #F5F5F5;
+}
+
+/* 好友 end*/
+
+/* 菜单 start*/
+.cux-menu-bar {
+    cursor: pointer;
+    background-color: white;
+    height: 203px;
+    width: 165px;
+    text-align: center;
+    border-radius: 4px;
+    color: black;
+    z-index: 4;
+    position: absolute;
+    top: 30px;
+    right: -30px;
+}
+
+.cux-menu-item {
+    padding: 0 15px;
+    line-height: 50px;
+    height: 50px;
+    border-bottom: 1px solid #F1F1F1;
+}
+
+.cux-menu-item > div {
+    display: table-cell;
+    padding: 0 0 0 15px;
+    font-size: 14px;
+}
+
+.cux-menu-item:hover,
+.cux-menu-item:focus {
+    background-color: #F5F5F5;
+}
+
+.cux-menu-icon {
+    display: table-cell;
+    font-size: 20px;
+}
+
+/* 菜单 end*/
+
+/* 登陆 start*/
+.cux-login {
+    height: 100%;
+    min-width: 860px;
+    min-height: 700px;
+    overflow: auto;
+    position: relative;
+}
+
+.cux-login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -270px;
+    margin-top: -250px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: #EEEEEE;
+    width: 540px;
+    height: 330px;
+    box-shadow: 0 2px 10px #999;
+    -moz-box-shadow: #999 0 2px 10px;
+    -webkit-box-shadow: #999 0 2px 10px;
+}
+
+.cux-login-head {
+    height: 50px;
+    text-align: center;
+    /* height: 50px; */
+    font-weight: 600;
+    border: 1px solid #337ab7;
+    background-color: #337ab7;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #EEEEEE;
+    line-height: 50px;
+}
+
+.cux-login-body {
+
+}
+
+/* 登陆 end*/

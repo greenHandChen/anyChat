@@ -1,23 +1,39 @@
-var webSocket;
-var chatSession = {
-    data: null,
-    chatPosition: null
-};
+function initVue() {
+    window.vm = new Vue({
+        el: '#anyChat',
+        data: {
+            activeTab: 0,
+            chatMsg: null,
+            chatFriends: []
+        },
+        methods:{
+            sendMsg: function () {
+                anyChatSocket.send(this.chatMsg);
+                this.chatMsg = null;
+            }
+        }
+    });
+}
 
 function initWebSocket() {
+    window.anyChatSocket = null;
+    var chatSession = {
+        data: null,
+        chatPosition: null
+    };
     if ('WebSocket' in window) {
-        webSocket = new WebSocket("ws://" + window.location.host + "/cux");
+        anyChatSocket = new WebSocket("ws://" + window.location.host + "/cux");
     } else if ('MozWebSocket' in window) {
-        webSocket = new MozWebSocket("ws://" + window.location.host + "/cux");
+        anyChatSocket = new MozWebSocket("ws://" + window.location.host + "/cux");
     } else {
-        webSocket = new SockJS("http://" + window.location.host + "/sockjs/cux");
+        anyChatSocket = new SockJS("http://" + window.location.host + "/sockjs/cux");
     }
-    webSocket.onopen = function (evnt) {
+    anyChatSocket.onopen = function (e) {
         console.log("websocket连接上");
     };
-    webSocket.onmessage = function (evnt) {
-        console.log(evnt.data);
-        chatSession = JSON.parse(evnt.data);
+    anyChatSocket.onmessage = function (e) {
+        console.log(e.data);
+        chatSession = JSON.parse(e.data);
         $('#msg-conent').append(
             '<div class="cux-content" style="text-align: ' + chatSession.chatPosition + ';">' +
             '<img src="/static/img/self.png" class="cux-head">' +
@@ -25,22 +41,51 @@ function initWebSocket() {
             '</div>')
             .scrollTop($('#msg-conent')[0].scrollHeight);
     };
-    webSocket.onerror = function (evnt) {
+    anyChatSocket.onerror = function (e) {
         console.log("websocket错误");
     };
-    webSocket.onclose = function (evnt) {
+    anyChatSocket.onclose = function (e) {
         console.log("websocket关闭");
     }
 }
 
-function initClickEvent() {
-    $('#send-msg').on('click', function (event) {
-        webSocket.send($('#msg-input').val());
-        $('#msg-input').val(null);
+function initNavTavbs() {
+    $('.cux-tab-icon').on('click',function (e) {
+        $('.cux-tab-icon').removeClass('cux-tab-icon-active');
+        $('.cux-tab-page').hide();
+        $(e.target).addClass('cux-tab-icon-active');
+        var tabPage = $(e.target).attr('cuxTab');
+        if (tabPage === 'cux-tab-friend') {
+            $.ajax({
+                url:"http://localhost:8081/api/getChatFriends",
+                dataType: "json",
+                success: function (data) {
+                    vm.chatFriends = data;
+                },
+                error: function (data) {
+
+                }
+            });
+        }
+        $('#' + tabPage).show();
     });
 }
 
+function initMenu() {
+    $('#cux-menu').hover(function () {
+        $('.cux-menu-bar').show();
+    },function () {
+        $('.cux-menu-bar').hide();
+    });
+    $('.cux-menu-bar').hover(function () {
+        $('.cux-menu-bar').show();
+    },function () {
+        $('.cux-menu-bar').hide();
+    });
+}
 $(function () {
+    initVue();
     initWebSocket();
-    initClickEvent();
+    initNavTavbs();
+    initMenu();
 });

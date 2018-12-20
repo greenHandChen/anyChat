@@ -4,5 +4,5 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <include file="classpath:config/liquibase/changelog/201812071720_add_chat_user.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-config.liquibase-add-changelog - JHipster will add config.liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20181220_add_chat_friend.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

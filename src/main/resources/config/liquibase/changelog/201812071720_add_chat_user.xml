@@ -17,7 +17,7 @@
             </column>
             <column name="username" type="varchar(20)" remarks="用户名"/>
             <column name="password" type="varchar(128)" remarks="密码"/>
-            <column name="fullName" type="varchar(20)" remarks="全名"/>
+            <column name="full_name" type="varchar(20)" remarks="全名"/>
             <column name="gender" type="varchar(20)" remarks="性别"/>
             <column name="birthday" type="timestamp" remarks="生日"/>
             <column name="email" type="varchar(20)" remarks="邮箱"/>

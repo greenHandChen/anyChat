@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql -->
+<mapper namespace="com.ceh.spring.websocket.dao.ChatFriendMapper">
+    <select id="findByUsername" parameterType="java.lang.String" resultMap="selectResultMap">
+        select cf.*,cu2.full_name
+        from chat_user cu,chat_friend cf,chat_user cu2
+        where cf.user_id = cu.id
+        and cu.username = #{username}
+        and cf.friend_id = cu2.id
+    </select>
+
+    <resultMap id="selectResultMap" type="com.ceh.spring.websocket.controller.dto.ChatFriendDTO">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="friend_id" property="friendId"/>
+        <result column="launch_id" property="launchId"/>
+        <result column="status" property="status"/>
+        <result column="createdDate" property="createdDate"/>
+        <result column="full_name" property="fullName"/>
+    </resultMap>
+</mapper>

@@ -8,7 +8,9 @@
     <link href="/static/boostrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
     <link href="/static/boostrapTable/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
     <link href="/static/anyChat/css/anyChat.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/anyChat/css/weCss.css" rel="stylesheet" type="text/css"/>
     <script src="/static/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/vue/vue.js" type="text/javascript"></script>
     <script src="/static/boostrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/static/boostrapTable/bootstrap-table.min.js" type="text/javascript"></script>
     <script src="/static/boostrapTable/bootstrap-table-locale-all.min.js" type="text/javascript"></script>
@@ -16,48 +18,88 @@
     <script src="/static/anyChat/js/anyChat.js" type="text/javascript"></script>
 </head>
 <body class="cux-body">
-<div style="margin:50px auto 0;max-width: 1000px;">
-    <div style="width: 28%;" class="cux-panel left-panel">
-        <div class="cux-left-panel-body">
-            <div class="cux-left-header">
-                <div class="cux-avatar">
-                    <img src="/static/img/self.png" class="cux-left-head">
-                </div>
-                <div class="cux-info">测试人员
-                    <i class="glyphicon glyphicon-menu-hamburger cux-info-icon"></i>
-                </div>
+<div id="anyChat" style="margin:50px auto 0;max-width: 1000px;">
+    <div class="cux-panel cux-left-panel">
+        <div class="cux-left-header">
+            <div class="cux-avatar">
+                <img src="/static/img/self.png" class="cux-left-head">
             </div>
-            <div class="cux-search-bar">
-                <i class="cux-search-icon glyphicon glyphicon-search"></i>
-                <input id="search" type="text" class="cux-search-input" placeholder="搜索">
-            </div>
-            <div class="cux-nav-tabs">
-                <div class="cux-tab">
-                    <div style="height: 30px; width: auto;border-right: 1px solid #24272C;">
-                        <a class="cux-tab-icon glyphicon glyphicon-comment"></a>
+            <div class="cux-info" style="position: relative">测试人员
+                <i id="cux-menu" class="glyphicon glyphicon-menu-hamburger cux-info-icon"></i>
+                <div id="cux-menu-bar" class="cux-menu-bar" hidden>
+                    <div class="cux-menu-item" style="border-top: 1px solid #F1F1F1;border-radius: 4px;">
+                        <!--<i class="glyphicon glyphicon-volume-up cux-menu-icon"></i>-->
+                        <icon class="iconfont icon-bangzhu cux-menu-icon"></icon>
+                        <div>打开声音</div>
+                    </div>
+                    <div class="cux-menu-item">
+                        <!--<i class="glyphicon glyphicon-bullhorn cux-menu-icon"></i>-->
+                        <icon class="iconfont icon-bangzhu cux-menu-icon"></icon>
+                        <div>打开桌面通知</div>
+                    </div>
+                    <div class="cux-menu-item">
+                        <!--<i class="glyphicon glyphicon-plus cux-menu-icon"></i>-->
+                        <icon class="iconfont icon-bangzhu cux-menu-icon"></icon>
+                        <div>添加好友</div>
+                    </div>
+                    <div class="cux-menu-item">
+                        <!--<i class="glyphicon glyphicon-off cux-menu-icon"></i>-->
+                        <icon class="iconfont icon-bangzhu cux-menu-icon"></icon>
+                        <div>退出</div>
                     </div>
                 </div>
-                <div class="cux-tab">
-                    <div style="height: 30px; width: auto;border-right: 1px solid #24272C;">
-                        <a class="cux-tab-icon glyphicon glyphicon-list-alt"></a>
-                    </div>
-                </div>
-                <div class="cux-tab">
-                    <a class="cux-tab-icon glyphicon glyphicon-user"></a>
+            </div>
+        </div>
+        <div class="cux-search-bar">
+            <i class="cux-search-icon glyphicon glyphicon-search"></i>
+            <input id="search" type="text" class="cux-search-input" placeholder="搜索">
+        </div>
+        <div class="cux-nav-tabs">
+            <div class="cux-tab">
+                <div><i cuxTab="cux-tab-msg" class="cux-tab-icon glyphicon glyphicon-comment"></i></div>
+            </div>
+            <div class="cux-tab">
+                <div><i cuxTab="cux-tab-news" class="cux-tab-icon glyphicon glyphicon-list-alt"></i></div>
+            </div>
+            <div class="cux-tab">
+                <i cuxTab="cux-tab-friend" class="cux-tab-icon glyphicon glyphicon-user"></i>
+            </div>
+        </div>
+        <div id="cux-tab-msg" class="cux-tab-page">
+            <div class="cux-friend cux-friend-lg">
+                <div class="cux-avatar"><img src="/static/img/self.png"></div>
+                <div class="cux-friend-name">陈恩慧</div>
+            </div>
+            <div class="cux-friend cux-friend-lg">
+                <div class="cux-avatar"><img src="/static/img/self.png"></div>
+                <div class="cux-friend-name">陈梦豪</div>
+            </div>
+            <div class="cux-friend cux-friend-lg">
+                <div class="cux-avatar"><img src="/static/img/self.png"></div>
+                <div class="cux-friend-name">陈谦慧</div>
+            </div>
+        </div>
+        <div id="cux-tab-news" class="cux-tab-page" hidden></div>
+        <div id="cux-tab-friend" class="cux-tab-page" hidden>
+            <div class="cux-friend-title">C</div>
+            <div class="cux-left-scrollbar">
+                <div v-for="(chatFriend,index) in chatFriends" class="cux-friend cux-friend-sm">
+                    <div class="cux-avatar"><img src="/static/img/self.png"></div>
+                    <div class="cux-friend-name">{{ chatFriend.fullName }}</div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="width: 72%;" class="cux-panel panel-primary right-panel">
+    <div class="cux-panel cux-right-panel">
         <div class="cux-panel-heading">
             测试demo-v1.0
         </div>
         <div class="cux-right-panel-body">
-            <div id="msg-conent" class="cux-well cux-well-lg cux-scrollbar"></div>
+            <div id="msg-conent" class="cux-well cux-well-lg cux-right-scrollbar"></div>
             <div class="input-group">
-                <input id="msg-input" type="text" class="form-control" placeholder="请输入...">
+                <input v-model="chatMsg" type="text" class="form-control" placeholder="请输入...">
                 <span class="input-group-btn">
-                    <button id="send-msg" class="btn btn-default" type="button">发送</button>
+                    <button @click="sendMsg" class="btn btn-default" type="button">发送</button>
                 </span>
             </div>
         </div>
