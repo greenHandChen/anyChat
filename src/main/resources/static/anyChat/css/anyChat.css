@@ -413,3 +413,68 @@
 }
 
 /* 登陆 end*/
+
+/*  添加好友界面 start*/
+.cux-search-user {
+    border-radius: 4px;
+    height: 500px;
+    width: 630px;
+    display: table;
+    position: absolute;
+    top: 30px;
+    right: 200px;
+    z-index: -1;
+    background-color: #e5e5e5;
+}
+
+.cux-search-user-box {
+    display: table-cell;
+    width: 50%;
+    border-right: 1px solid #EFF2F9
+}
+
+.cux-search-user-box-top {
+    height: 25%;
+}
+
+.cux-search-user-box-middle {
+    height: 60%;
+    border-top: 1px solid #EFF2F9;
+    border-bottom: 1px solid #EFF2F9;
+    overflow-y: scroll;
+}
+
+.cux-search-user-box-bottom {
+    height: 15%;
+}
+
+/*.cux-search-user-box-top:nth-child(1) {*/
+    /*height: 60%;*/
+    /*font-size: 22px;*/
+    /*padding: 20px;*/
+/*}*/
+
+/*.cux-search-user-box-top:nth-child(2) {*/
+    /*height: 40%;*/
+    /*padding: 0 50px;*/
+/*}*/
+
+.cux-search-user-box-title {
+    width: 65%;
+    display: inline-block
+}
+
+.cux-search-user-box-icon {
+    width: 30%;
+    display: inline-block;
+    text-align: right;
+    cursor: pointer;
+}
+
+.cux-friend-search {
+    height: 75px;
+    border-bottom: 1px solid #EFF2F9;
+    background-color: #E5E5E5;
+    color:black
+}
+/*  添加好友界面 end*/

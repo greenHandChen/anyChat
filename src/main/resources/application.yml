@@ -3,9 +3,9 @@ spring:
     name: spring-websocket
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/chat_db?useUnicode=true&characterEncoding=utf8&useSSL=true
-    username: root
-    password: root
+    url: jdbc:mysql://114.115.142.170:3306/chat_db?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: anyChat
+    password: anyChat
 server:
   port: 8081
 

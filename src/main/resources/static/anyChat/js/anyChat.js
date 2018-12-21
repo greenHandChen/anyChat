@@ -4,12 +4,25 @@ function initVue() {
         data: {
             activeTab: 0,
             chatMsg: null,
+            searchUserMsg:null,
             chatFriends: []
         },
         methods:{
             sendMsg: function () {
                 anyChatSocket.send(this.chatMsg);
                 this.chatMsg = null;
+            },
+            showSearchUserModal: function () {
+                $('#search-user-modal').css('z-index','4').show();
+            },
+            hideSearchUserModal: function () {
+                $('#search-user-modal').hide().css('z-index','-1');
+            },
+            searchUser: function () {
+                console.log(this.searchUserMsg);
+            },
+            addFriend: function () {
+
             }
         }
     });
@@ -81,6 +94,9 @@ function initMenu() {
         $('.cux-menu-bar').show();
     },function () {
         $('.cux-menu-bar').hide();
+    });
+    $('#cux-add-friend').on('click',function (e) {
+
     });
 }
 $(function () {
