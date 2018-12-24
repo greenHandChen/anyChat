@@ -4,21 +4,24 @@ function initVue() {
         data: {
             activeTab: 0,
             chatMsg: null,
-            searchUserMsg:null,
+            searchUserMsg: null,
             chatFriends: []
         },
-        methods:{
+        methods: {
             sendMsg: function () {
                 anyChatSocket.send(this.chatMsg);
                 this.chatMsg = null;
             },
             showSearchUserModal: function () {
-                $('#search-user-modal').css('z-index','4').show();
+                $('#search-user-modal').css('z-index', '4').show();
             },
             hideSearchUserModal: function () {
-                $('#search-user-modal').hide().css('z-index','-1');
+                $('#search-user-modal').hide().css('z-index', '-1');
             },
             searchUser: function () {
+                $.ajax({
+                    url:"http:localhost:8081/api/searchUsers?"
+                });
                 console.log(this.searchUserMsg);
             },
             addFriend: function () {
@@ -63,15 +66,16 @@ function initWebSocket() {
 }
 
 function initNavTavbs() {
-    $('.cux-tab-icon').on('click',function (e) {
+    $('.cux-tab-icon').on('click', function (e) {
         $('.cux-tab-icon').removeClass('cux-tab-icon-active');
         $('.cux-tab-page').hide();
         $(e.target).addClass('cux-tab-icon-active');
         var tabPage = $(e.target).attr('cuxTab');
         if (tabPage === 'cux-tab-friend') {
             $.ajax({
-                url:"http://localhost:8081/api/getChatFriends",
-                dataType: "json",
+                url: 'http://localhost:8081/api/getChatFriends',
+                method: 'GET',
+                dataType: 'json',
                 success: function (data) {
                     vm.chatFriends = data;
                 },
@@ -87,18 +91,19 @@ function initNavTavbs() {
 function initMenu() {
     $('#cux-menu').hover(function () {
         $('.cux-menu-bar').show();
-    },function () {
+    }, function () {
         $('.cux-menu-bar').hide();
     });
     $('.cux-menu-bar').hover(function () {
         $('.cux-menu-bar').show();
-    },function () {
+    }, function () {
         $('.cux-menu-bar').hide();
     });
-    $('#cux-add-friend').on('click',function (e) {
+    $('#cux-add-friend').on('click', function (e) {
 
     });
 }
+
 $(function () {
     initVue();
     initWebSocket();

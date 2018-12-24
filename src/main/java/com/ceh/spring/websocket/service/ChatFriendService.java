@@ -20,4 +20,8 @@ public class ChatFriendService {
     public List<ChatFriendDTO> findByUsername(){
         return chatFriendMapper.findByUsername(SecurityUtil.getUserName());
     }
+
+    public List<ChatFriendDTO> searchUsers(String username){
+        return chatFriendMapper.findByUsername(username);
+    }
 }
